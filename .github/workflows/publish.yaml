@@ -39,11 +39,11 @@ jobs:
       with:
         images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
 
-    - name: Run Buildx (push image)
-      if: success()
-      run: |
-        docker buildx build \
-          --platform ${{ matrix.platform }} \
-          --tag viperml/aof-docker:latest \
-          --output type=image,push=true \
-          .
+    - name: Build and push Docker image
+      uses: docker/build-push-action@v3
+      with:
+        context: .
+        platforms: ${{ matrix.platform }}
+        push: true
+        tags: ${{ steps.meta.outputs.tags }}
+        labels: ${{ steps.meta.outputs.labels }}
