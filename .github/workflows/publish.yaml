@@ -11,10 +11,11 @@ env:
   IMAGE_NAME: ${{ github.repository }}
 
 jobs:
-  build-armv8:
+  build-push:
     runs-on: ubuntu-latest
-    env:
-      DOCKER_TARGET_PLATFORM: linux/arm/v8
+    strategy:
+      matrix:
+        platform: [linux/amd64]
     steps:
     - name: Log in to the Container registry
       uses: docker/login-action@v2
@@ -42,7 +43,7 @@ jobs:
       if: success()
       run: |
         docker buildx build \
-          --platform ${{ env.DOCKER_TARGET_PLATFORM }} \
-          --tag ${{ env.IMAGE_NAME }}:latest \
+          --platform ${{ matrix.platform }} \
+          --tag aof-docker:latest \
           --output type=image,push=true \
           .
