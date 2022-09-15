@@ -5,9 +5,9 @@ RUN apt update \
     openjdk-17-jre \
     && rm -rf /var/lib/apt/lists/*
 
-ARG SERVER_VERSION=2.4.0
+ARG SERVERSTARTER_VERSION=2.4.0
 
-ADD ./src /srv/aof-src
-ADD https://github.com/TeamAOF/ServerStarter/releases/download/v$SERVER_VERSION/serverstarter-$SERVER_VERSION.jar /srv/aof-src/serverstarter.jar
+ADD ./src /srv/minecraft-vendor
+ADD https://github.com/EnigmaticaModpacks/ServerStarter/releases/download/v$SERVERSTARTER_VERSION/serverstarter-$SERVERSTARTER_VERSION.jar /srv/minecraft-vendor/serverstarter.jar
 
-CMD ["sh", "-c", "/srv/aof-src/bootstrap.sh /srv/aof-src /srv/aof-runtime"]
+CMD ["sh", "-c", "/srv/minecraft-vendor/init.sh /srv/minecraft"]
