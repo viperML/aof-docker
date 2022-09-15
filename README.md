@@ -11,3 +11,9 @@ docker run \
     --mount type=bind,source=/path/to/server-setup-config.yaml,destination=/srv/minecraft-vendor/server-setup-config.yaml \
     ghcr.io/viperml/minecraft-serverstarter-docker
 ```
+
+Optionally bind mount the runtime data into a docker volume, or whatever solution you want:
+
+```
+--mount type=volume,source=minecraftdata,destination=/srv/minecraft
+```
