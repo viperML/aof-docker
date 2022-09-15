@@ -2,6 +2,8 @@
 
 Generic image for serverstarter-based minecraft servers.
 
+Available for amd64 and arm64 hosts.
+
 ## Basic usage
 
 ```console
